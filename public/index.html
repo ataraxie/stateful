@@ -1,0 +1,35 @@
+<html>
+    <head></head>
+    <body>
+
+        <script>
+             var STATEFUL_WS = (function() {
+
+	            var ws = new WebSocket('ws://localhost:3000');
+
+	            ws.addEventListener('open', function (event) {
+		            console.log('OPEN');
+	            });
+
+	            ws.addEventListener('message', function (event) {
+		            var object = JSON.parse(event.data);
+		            var element;
+		            if (object.type === 'script') {
+			            element = document.createElement("script");
+			            element.text = object.content;
+			            document.body.appendChild(element);
+		            } else if (object.type === 'style') {
+			            element = document.createElement('style');
+			            element.type = 'text/css';
+			            element.appendChild(document.createTextNode(object.content));
+			            document.head.appendChild(element);
+                    }
+	            });
+
+	            return ws;
+
+            }());
+
+        </script>
+    </body>
+</html>
