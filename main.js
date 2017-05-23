@@ -10,6 +10,11 @@ app.use(express.static('public', {
 }));
 
 app.ws('/', function(ws, req) {
+	
+	function file(path) {
+		return '\n' + fs.readFileSync(path, 'utf8') + '\n';
+	}
+
 	function send(type, name, content) {
 		let json = JSON.stringify({
 			type: type,
@@ -27,7 +32,3 @@ app.ws('/', function(ws, req) {
 app.listen(3000, function () {
 	console.log('STATEFUL is now running on port 3000!');
 });
-
-function file(path) {
-	return '\n' + fs.readFileSync(path, 'utf8') + '\n';
-}
