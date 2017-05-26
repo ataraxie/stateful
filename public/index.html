@@ -3,21 +3,21 @@
     <body>
 
         <script>
-             (function() {
-
-	            var ws = window.STATEFUL_WS = new WebSocket('ws://localhost:3000');
-	            ws.addEventListener('message', function (event) {
-		            var eventData = JSON.parse(event.data);
-		            var element;
-		            if (eventData.name === 'stateful-init.js') {
-		            	console.log('STATEFUL INIT');
-			            element = document.createElement("script");
-			            element.text = eventData.content;
-			            document.body.appendChild(element);
-                    }
-	            });
-
-            }());
+//             (function() {
+//
+//	            var ws = window.STATEFUL_WS = new WebSocket('ws://localhost:3001');
+//	            ws.addEventListener('message', function (event) {
+//		            var eventData = JSON.parse(event.data);
+//		            var element;
+//		            if (eventData.name === 'stateful-init.js') {
+//		            	console.log('STATEFUL INIT');
+//			            element = document.createElement("script");
+//			            element.text = eventData.content;
+//			            document.body.appendChild(element);
+//                    }
+//	            });
+//
+//            }());
 
         </script>
     </body>

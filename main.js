@@ -35,5 +35,5 @@ app.ws('/', function(ws, req) {
 });
 
 app.listen(3001, function () {
-	console.log('STATEFUL WS is now running on port 3000!');
+	console.log('STATEFUL WS is now running on port 3001!');
 });
