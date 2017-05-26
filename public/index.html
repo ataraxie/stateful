@@ -3,30 +3,19 @@
     <body>
 
         <script>
-             var STATEFUL_WS = (function() {
+             (function() {
 
-	            var ws = new WebSocket('ws://localhost:3000');
-
-	            ws.addEventListener('open', function (event) {
-		            console.log('OPEN');
-	            });
-
+	            var ws = window.STATEFUL_WS = new WebSocket('ws://localhost:3000');
 	            ws.addEventListener('message', function (event) {
-		            var object = JSON.parse(event.data);
+		            var eventData = JSON.parse(event.data);
 		            var element;
-		            if (object.type === 'script') {
+		            if (eventData.name === 'stateful-init.js') {
+		            	console.log('STATEFUL INIT');
 			            element = document.createElement("script");
-			            element.text = object.content;
+			            element.text = eventData.content;
 			            document.body.appendChild(element);
-		            } else if (object.type === 'style') {
-			            element = document.createElement('style');
-			            element.type = 'text/css';
-			            element.appendChild(document.createTextNode(object.content));
-			            document.head.appendChild(element);
                     }
 	            });
-
-	            return ws;
 
             }());
 
